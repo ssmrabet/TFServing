@@ -21,11 +21,11 @@ we specify that we are running tensorFlow serving
 
 ### Run one model
 
-'''bash
+```bash
 docker run -p 8501:8501 --name tfserving_resnet \
 --mount type=bind,source=/tmp/resnet,target=/models/resnet \
 -e MODEL_NAME=resnet -t tensorflow/serving &
-'''
+```
 
 We have to check that this two local links for our two models so we gonna find that our models are available:
 http://localhost:8501/v1/models/resnet
