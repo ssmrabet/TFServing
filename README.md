@@ -8,6 +8,13 @@
 for more models you can check this link
 [Lets check the link](https://github.com/tensorflow/serving/tree/master/tensorflow_serving/servables/tensorflow/testdata)
 
+## Download TFServing 
+
+First we need to pull an image of tensorflow serving
+```bash
+docker pull tensorflow/serving
+```
+
 ## Run Models with Serving
 
 --mount type=bind,source=<model location on host>,target=<model location in container>
@@ -52,7 +59,7 @@ We can test with the same client code for resnet pre-trained model
 python3 resnet_client.py
 ```
 
-### To check the difference for without serving
+### To check the difference without serving
 
 resnet_client_without_serving.py it's a sample to calculate resnet pre-trained pb model latency
 
