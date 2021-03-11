@@ -32,30 +32,30 @@ http://localhost:8501/v1/models/resnet
 http://localhost:8501/v1/models/half_plus_two
 
 Now we're gonna test resnet pre-trained model with this client code
-'''bash
+```bash
 python3 resnet_client.py
-'''
+```
 
 ### Run two or more models
 
-'''bash
+```bash
 docker run -p 8501:8501 --name tfserving_models \
 --mount type=bind,source=/tmp/half_plus_two,target=/models/half_plus_two \
 --mount type=bind,source=/tmp/resnet,target=/models/resnet \
 --mount type=bind,source=/tmp/model_config.config,target=/models/model_config.config \
 -t tensorflow/serving \
 --model_config_file=/models/model_config.config &
-'''
+```
 
 We can test with the same client code for resnet pre-trained model
-'''bash
+```bash
 python3 resnet_client.py
-'''
+```
 
 ### To check the difference for without serving
 
 resnet_client_without_serving.py it's a sample to calculate resnet pre-trained pb model latency
 
-'''bash
+```bash
 python3 resnet_client_without_serving.py
-'''
+```
