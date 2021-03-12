@@ -1,7 +1,7 @@
 # TFServing
 
 ## RESNET Model
-[Lets download the pre-trained RESNET pb model](https://storage.googleapis.com/download.tensorflow.org/models/official/20181001_resnet/savedmodels/resnet_v2_fp32_savedmodel_NHWC_jpg.tar.gz)
+[I got the pre-trained RESNET pb model from here](https://storage.googleapis.com/download.tensorflow.org/models/official/20181001_resnet/savedmodels/resnet_v2_fp32_savedmodel_NHWC_jpg.tar.gz)
 
 ## Other Models
 
