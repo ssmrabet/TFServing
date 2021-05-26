@@ -66,3 +66,48 @@ resnet_client_without_serving.py it's a sample to calculate resnet pre-trained p
 ```bash
 python3 resnet_client_without_serving.py
 ```
+  
+## Run models with docker.yml file
+  
+You need to use this method if you are looking to relate your tf serving to a flask project docker image or any other type of project
+
+First, you need to create a network to use it in all related projects
+```bash
+docker network create test-network
+```
+  
+Second, create your docker.yml file configs
+  
+```bash
+version: "1"
+networks:
+  test-network:
+    driver: bridge
+services:
+  serving:
+    image: tensorflow/serving:latest
+    restart: unless-stopped
+    ports:
+      - 8500:8500
+      - 8501:8501
+    volumes:
+      - ./models:/models  # --> this folder is where yout put all your models
+      - ./models.config:/models.config  # --> this is the config file
+    command:
+      - "bash -c"
+      - "--model_config_file=/models.config"
+      - "--model_config_file_poll_wait_seconds=60"
+    networks:
+      - test-network
+  flask-project-image:  # --> the name of your flask project image
+    image: flask-project-image  # --> the name of your flask project image
+    ports:
+      - port:port  # --> port used in the docker image
+    networks:
+      - test-network  # --> relate this image with the same network
+```
+
+Finally, launch this command line
+```bash
+docker run -it --rm --name image-name -p port:port --network test-network -v /Path-to-the-project/src:/code image-of-flask-project:version
+```
